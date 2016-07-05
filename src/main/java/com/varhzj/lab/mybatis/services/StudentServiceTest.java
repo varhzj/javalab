@@ -1,0 +1,39 @@
+package com.varhzj.lab.mybatis.services;
+
+import java.util.List;
+
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import com.varhzj.lab.mybatis.domain.Student;
+
+public class StudentServiceTest {
+
+	private static StudentService studentService;
+
+	@BeforeClass
+	public static void setUp() {
+		studentService = new StudentService();
+	}
+
+	public static void teardown() {
+		studentService = null;
+	}
+
+	@Test
+	public void testFindAllStudents() {
+		List<Student> students = studentService.findAllStudents();
+		Assert.assertNotNull(students);
+		for (Student student : students) {
+			System.out.println(student);
+		}
+	}
+
+	@Test
+	public void testFindStudentById() {
+		Student student = studentService.findStudentById(1);
+		Assert.assertNotNull(student);
+		System.out.println(student);
+	}
+}
