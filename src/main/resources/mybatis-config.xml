@@ -21,6 +21,6 @@
 
 	<mappers>
 		<!-- <mapper resource="com/zhijian/lab/mybatis/mappers/StudentMapper.xml"/> -->
-		<package name="com.zhijian.lab.mybatis.mappers"/>
+		<package name="com.varhzj.lab.mybatis.mappers"/>
 	</mappers>
 </configuration>
