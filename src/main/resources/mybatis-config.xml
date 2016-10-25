@@ -20,7 +20,7 @@
 	</environments>
 
 	<mappers>
-		<!-- <mapper resource="com/zhijian/lab/mybatis/mappers/StudentMapper.xml"/> -->
+		<!--<mapper resource="com/varhzj/lab/mybatis/mappers/StudentMapper.xml"/>-->
 		<package name="com.varhzj.lab.mybatis.mappers"/>
 	</mappers>
 </configuration>

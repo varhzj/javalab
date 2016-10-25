@@ -1,5 +1,6 @@
 package com.varhzj.lab.mybatis.services;
 
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Assert;
@@ -28,6 +29,7 @@ public class StudentServiceTest {
 		for (Student student : students) {
 			System.out.println(student);
 		}
+//		students.forEach((Student student) -> System.out.println(student));
 	}
 
 	@Test
@@ -35,5 +37,22 @@ public class StudentServiceTest {
 		Student student = studentService.findStudentById(1);
 		Assert.assertNotNull(student);
 		System.out.println(student);
+	}
+
+	@Test
+	public void testDeleteStudentById() {
+		Student student = new Student();
+		student.setStudId(11);
+		student.setName("Henry");
+		student.setEmail("Henry@example.com");
+		student.setDob(new Date());
+		studentService.createStudent(student);
+
+		Student student1 = studentService.findStudentById(11);
+		Assert.assertNotNull(student1);
+
+		studentService.deleteStudentById(11);
+		student1 = studentService.findStudentById(11);
+		Assert.assertNull(student1);
 	}
 }
