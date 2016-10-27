@@ -17,7 +17,7 @@
 	</select>
 	<insert id="insertStudent" parameterType="Student">
 		insert into
-		students(stud_id, name, email, bob) values(#{studId}, #{name},
-		#{email}, #{bob})
+		students(stud_id, name, email, dob) values(#{studId}, #{name},
+		#{email}, #{dob})
 	</insert>
 </mapper>

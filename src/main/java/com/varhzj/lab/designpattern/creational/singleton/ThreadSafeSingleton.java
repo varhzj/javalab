@@ -5,7 +5,7 @@ package com.varhzj.lab.designpattern.creational.singleton;
  */
 public class ThreadSafeSingleton {
 
-    private static ThreadSafeSingleton instance;
+    private volatile static ThreadSafeSingleton instance;
 
     private ThreadSafeSingleton() {}
 
