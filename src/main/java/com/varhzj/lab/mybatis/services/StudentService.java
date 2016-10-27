@@ -48,4 +48,15 @@ public class StudentService {
 		}
 	}
 
+	public void deleteStudentById(Integer id) {
+		SqlSession sqlSession = MybatisSqlSessionFactory.openSession();
+		try {
+			StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
+			studentMapper.deleteStudentById(id);
+			sqlSession.commit();
+		} finally {
+			sqlSession.close();
+		}
+	}
+
 }

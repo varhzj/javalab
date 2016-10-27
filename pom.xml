@@ -177,10 +177,14 @@
 				</configuration>
 			</plugin>
 		</plugins>
+
+		<!-- 解决idea下source文件夹下java以外文件无法拷贝到target目录下问题 -->
 		<resources>
 			<resource>
 				<directory>src/main/java</directory>
-				<excludes>*.java</excludes>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
 			</resource>
 		</resources>
 	</build>
