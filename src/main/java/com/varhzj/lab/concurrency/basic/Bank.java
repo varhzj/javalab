@@ -2,16 +2,16 @@ package com.varhzj.lab.concurrency.basic;
 
 public class Bank implements Runnable{
 
-	private Account accout;
+	private Account account;
 
-	public Bank(Account accout) {
-		this.accout = accout;
+	public Bank(Account account) {
+		this.account = account;
 	}
 
 	@Override
 	public void run() {
 		for (int i = 0; i < 100; i++) {
-			accout.subtractAccout(1000);
+			account.subtractAccount(1000);
 		}
 	}
 

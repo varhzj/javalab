@@ -3,6 +3,7 @@ package com.varhzj.lab.mybatis.services;
 import java.util.Date;
 import java.util.List;
 
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -18,6 +19,7 @@ public class StudentServiceTest {
 		studentService = new StudentService();
 	}
 
+	@AfterClass
 	public static void teardown() {
 		studentService = null;
 	}

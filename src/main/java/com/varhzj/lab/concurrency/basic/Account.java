@@ -14,7 +14,7 @@ public class Account {
 		this.balance = balance;
 	}
 
-	public synchronized void addAccout(double amount) {
+	public synchronized void addAccount(double amount) {
 		double tmp = balance;
 		try {
 			TimeUnit.MILLISECONDS.sleep(5);
@@ -25,7 +25,7 @@ public class Account {
 		balance = tmp;
 	}
 
-	public synchronized void subtractAccout(double amount) {
+	public synchronized void subtractAccount(double amount) {
 		double tmp = balance;
 		try {
 			TimeUnit.MILLISECONDS.sleep(10);

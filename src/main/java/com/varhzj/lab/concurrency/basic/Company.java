@@ -2,26 +2,26 @@ package com.varhzj.lab.concurrency.basic;
 
 public class Company implements Runnable {
 
-	private Account accout;
+	private Account account;
 
-	public Company(Account accout) {
-		this.accout = accout;
+	public Company(Account account) {
+		this.account = account;
 	}
 
 	@Override
 	public void run() {
 		for (int i = 0; i < 100; i++) {
-			accout.addAccout(1000);
+			account.addAccount(1000);
 		}
 	}
 
 	public static void main(String[] args) {
-		Account accout = new Account();
-		accout.setBalance(1000);
+		Account account = new Account();
+		account.setBalance(1000);
 
-		Thread companyThread = new Thread(new Company(accout));
-		Thread bankThread = new Thread(new Bank(accout));
-		System.out.println("Initial balance: " + accout.getBalance());
+		Thread companyThread = new Thread(new Company(account));
+		Thread bankThread = new Thread(new Bank(account));
+		System.out.println("Initial balance: " + account.getBalance());
 
 		companyThread.start();
 		bankThread.start();
@@ -29,7 +29,7 @@ public class Company implements Runnable {
 		try {
 			companyThread.join();
 			bankThread.join();
-			System.out.println("Final balance: " + accout.getBalance());
+			System.out.println("Final balance: " + account.getBalance());
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
