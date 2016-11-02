@@ -1,5 +1,7 @@
 package com.varhzj.lab.concurrency.examples;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by varhzj on 16-11-1.
  */
@@ -22,8 +24,13 @@ public class NoVisibility {
 
     public static void main(String[] args) {
         new ReaderThread().start();
-        number = 50;
         ready = true;
+//        try {
+//            TimeUnit.SECONDS.sleep(2);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+        number = 50;
     }
 
 }
