@@ -11,8 +11,9 @@ import java.math.BigInteger;
  */
 public abstract class AbstractFactorizer extends GenericServlet implements Servlet {
 
-    protected void encodeIntoResponse(ServletResponse res, BigInteger[] factors) {
-    }
+    protected void encodeIntoResponse(ServletResponse res, BigInteger[] factors) {}
+
+    protected void encodeError(ServletResponse res, String errMsg) {}
 
     protected BigInteger[] factor(BigInteger i) {
         return new BigInteger[]{i};
