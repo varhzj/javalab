@@ -17,6 +17,8 @@ public class TimeApiExample {
         localDateTimeUsage();
 
         durationAndPeriodUsage();
+
+        System.out.println(String.join(", ", "java", "python", "ruby"));
     }
 
     private static void localDateUsage() {
