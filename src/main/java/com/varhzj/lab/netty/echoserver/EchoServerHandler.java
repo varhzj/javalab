@@ -6,7 +6,7 @@ import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
-@Sharable
+@Sharable // Indicates that a ChannelHandler can be safely shared by multiple channels
 public class EchoServerHandler extends ChannelInboundHandlerAdapter {
 
 	@Override
