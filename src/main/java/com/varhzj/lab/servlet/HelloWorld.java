@@ -23,7 +23,7 @@ public class HelloWorld extends HttpServlet {
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Cookie firstName = new Cookie("first_name", "zhijian");
+		Cookie firstName = new Cookie("first_name", "varhzj");
 		Cookie lastName = new Cookie("last_name", "huang");
 
 		resp.addCookie(firstName);

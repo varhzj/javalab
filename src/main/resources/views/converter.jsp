@@ -14,7 +14,7 @@
 		function req() {
 			$.ajax({
 				url: "convert",
-				data: "1000-zhijianhuang",
+				data: "1000-varhzj",
 				type: "POST",
 				contentType: "application/x-sohulab",
 				success: function(data) {

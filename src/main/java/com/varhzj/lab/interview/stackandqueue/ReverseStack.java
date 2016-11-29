@@ -3,7 +3,7 @@ package com.varhzj.lab.interview.stackandqueue;
 import java.util.Stack;
 
 /**
- * Created by huangzhijian on 16-8-8.
+ * Created by varhzj on 16-8-8.
  */
 // 不使用其他数据结构实现栈的逆序
 public class ReverseStack {

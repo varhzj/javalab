@@ -3,7 +3,7 @@ package com.varhzj.lab.interview.binarytree;
 import java.util.Stack;
 
 /**
- * Created by huangzhijian on 16-8-13.
+ * Created by varhzj on 16-8-13.
  */
 public class TreeTraversal {
 
