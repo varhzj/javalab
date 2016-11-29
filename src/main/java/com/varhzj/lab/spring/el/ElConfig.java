@@ -14,7 +14,7 @@ import org.springframework.core.io.Resource;
 
 @Configuration
 @ComponentScan
-@PropertySource("classpath:/com/sohu/lab/spring/el/test.properties")
+@PropertySource("classpath:/com/varhzj/lab/spring/el/test.properties")
 public class ElConfig {
 
 	@Value("I like that")
@@ -29,7 +29,7 @@ public class ElConfig {
 	@Value("#{demoService.another}")
 	private String fromAnother;
 
-	@Value("classpath:com/sohu/lab/spring/el/test.txt")
+	@Value("classpath:com/varhzj/lab/spring/el/test.txt")
 	private Resource testFile;
 
 	@Value("http://www.baidu.com")

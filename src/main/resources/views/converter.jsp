@@ -16,7 +16,7 @@
 				url: "convert",
 				data: "1000-varhzj",
 				type: "POST",
-				contentType: "application/x-sohulab",
+				contentType: "application/x-varhzjlab",
 				success: function(data) {
 					$("#resp").html(data);
 				}
