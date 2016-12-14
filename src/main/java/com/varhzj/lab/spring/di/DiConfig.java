@@ -5,14 +5,14 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan("com.zhijian.lab.spring.di")
+@ComponentScan("com.varhzj.lab.spring.di")
 public class DiConfig {
 
 	public static void main(String[] args) {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DiConfig.class);
 
 		UseFunctionService useFucService = context.getBean(UseFunctionService.class);
-		System.out.println(useFucService.sayHello("zhijian"));
+		System.out.println(useFucService.sayHello("varhzj"));
 
 		context.close();
 	}

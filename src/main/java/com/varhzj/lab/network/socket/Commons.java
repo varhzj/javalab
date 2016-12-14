@@ -1,7 +1,7 @@
 package com.varhzj.lab.network.socket;
 
 /**
- * Created by huangzhijian on 16-6-17.
+ * Created by varhzj on 16-6-17.
  */
 public interface Commons {
 

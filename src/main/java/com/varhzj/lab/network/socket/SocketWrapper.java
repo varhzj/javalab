@@ -11,7 +11,7 @@ import java.net.Socket;
 import java.net.SocketAddress;
 
 /**
- * Created by huangzhijian on 16-6-17.
+ * Created by varhzj on 16-6-17.
  */
 public class SocketWrapper implements Closeable {
 

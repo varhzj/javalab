@@ -1,5 +1,6 @@
 package com.varhzj.lab.springmvc;
 
+import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration.Dynamic;
@@ -19,7 +20,8 @@ public class WebInitializer implements WebApplicationInitializer {
 		Dynamic servlet = servletContext.addServlet("dispatcher", new DispatcherServlet(context));
 		servlet.addMapping("/");
 		servlet.setLoadOnStartup(1);
-		servlet.setAsyncSupported(true);
+		servlet.setAsyncSupported(true); // 添加异步支持
+        servlet.setMultipartConfig(new MultipartConfigElement("/opt/file", 10000L, 10000L, 512000));
 	}
 
 }

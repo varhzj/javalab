@@ -15,7 +15,7 @@ import org.springframework.util.StreamUtils;
 public class MyMessageConverter extends AbstractHttpMessageConverter<DemoObj> {
 
 	public MyMessageConverter() {
-		super(new MediaType("application", "x-zhijianlab", Charset.forName("UTF-8")));
+		super(new MediaType("application", "x-varhzjlab", Charset.forName("UTF-8")));
 	}
 
 	@Override

@@ -30,7 +30,8 @@ public class ExceptionHandlerAdvice {
 
 	@InitBinder
 	public void initBinder(WebDataBinder webDataBinder) {
-		webDataBinder.setDisallowedFields("id");
+		// 下面这一句将会导致id被忽略
+//		webDataBinder.setDisallowedFields("id");
 	}
 
 }

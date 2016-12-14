@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan
 public class PrePostConfig {
 
-	@Bean(initMethod = "init", destroyMethod = "destory")
+	@Bean(initMethod = "init", destroyMethod = "destroy")
 	public BeanWayService beanWayService() {
 		return new BeanWayService();
 	}

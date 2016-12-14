@@ -7,16 +7,16 @@ import org.springframework.web.context.request.async.DeferredResult;
 @Service
 public class PushService {
 
-	private DeferredResult<String> defferredResult;
+	private DeferredResult<String> deferredResult;
 
 	public DeferredResult<String> getAsyncUpdate() {
-		defferredResult = new DeferredResult<>();
-		return defferredResult;
+		deferredResult = new DeferredResult<>();
+		return deferredResult;
 	}
 
 	@Scheduled(fixedDelay = 5000)
 	public void refresh() {
-		if (defferredResult != null)
-			defferredResult.setResult(String.valueOf(System.currentTimeMillis()));
+		if (deferredResult != null)
+			deferredResult.setResult(String.valueOf(System.currentTimeMillis()));
 	}
 }

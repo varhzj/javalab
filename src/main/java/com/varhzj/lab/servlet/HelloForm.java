@@ -23,7 +23,7 @@ public class HelloForm extends HttpServlet {
 		resp.addCookie(lastName);
 
 		HttpSession session = req.getSession(true);
-		session.setAttribute("user_id", "zhijianhuang");
+		session.setAttribute("user_id", "varhzj");
 
 		resp.setContentType("text/html;charset=UTF-8");
 

@@ -1,7 +1,7 @@
 package com.varhzj.lab.interview.binarytree;
 
 /**
- * Created by huangzhijian on 16-8-13.
+ * Created by varhzj on 16-8-13.
  */
 public class TreeNode {
 

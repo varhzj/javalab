@@ -1,15 +1,15 @@
 package com.varhzj.lab.interview.linkedlist;
 
 /**
- * Created by huangzhijian on 16-8-13.
+ * Created by varhzj on 16-8-13.
  */
 public class ListNode {
 
-    public int value;
+    public int val;
     public ListNode next;
 
-    public ListNode(int value) {
-        this.value = value;
+    public ListNode(int val) {
+        this.val = val;
     }
 
 }

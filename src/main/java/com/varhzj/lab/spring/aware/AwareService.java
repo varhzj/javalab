@@ -27,7 +27,7 @@ public class AwareService implements BeanNameAware, ResourceLoaderAware {
 
 	public void outputResult() {
 		System.out.println("Bean name: " + beanName);
-		Resource resource = loader.getResource("classpath:com/sohu/lab/spring/aware/test.txt");
+		Resource resource = loader.getResource("classpath:com/varhzj/lab/spring/aware/test.txt");
 		try {
 			System.out.println("ResourceLoader get content from file: " + IOUtils.toString(resource.getInputStream()));
 		} catch (IOException e) {

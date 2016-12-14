@@ -14,12 +14,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class LogAspect {
 
-	@Pointcut("@annotation(com.zhijian.lab.spring.aop.Action)")
+	@Pointcut("@annotation(com.varhzj.lab.spring.aop.Action)")
 	public void annotationPointCut() {
 	}
 
 	@Before("annotationPointCut()")
-	public void after(JoinPoint joinPoint) {
+	public void before(JoinPoint joinPoint) {
 		MethodSignature signature = (MethodSignature) joinPoint.getSignature();
 		Method method = signature.getMethod();
 		Action action = method.getAnnotation(Action.class);
@@ -27,7 +27,7 @@ public class LogAspect {
 	}
 
 	@After("execution(* *.*.*.*.*.DemoMethodService.*(..))")
-	public void before(JoinPoint joinPoint) {
+	public void after(JoinPoint joinPoint) {
 		MethodSignature signature = (MethodSignature) joinPoint.getSignature();
 		Method method = signature.getMethod();
 		System.out.println("方法规则式拦截：" + method.getName());

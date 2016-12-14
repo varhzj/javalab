@@ -11,8 +11,8 @@ public class BeanWayService {
 		System.out.println("@Bean-init-method");
 	}
 
-	public void destory() {
-		System.out.println("@Bean-destory-method");
+	public void destroy() {
+		System.out.println("@Bean-destroy-method");
 	}
 
 }
