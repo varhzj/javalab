@@ -11,7 +11,7 @@ public class TreeTraversal {
         if (head == null)
             return;
 
-        System.out.print(head.value + " ");
+        System.out.print(head.val + " ");
         preOrderRecur(head.left);
         preOrderRecur(head.right);
     }
@@ -21,7 +21,7 @@ public class TreeTraversal {
             return;
 
         inOrderRecur(head.left);
-        System.out.println(head.value + " ");
+        System.out.println(head.val + " ");
         inOrderRecur(head.right);
     }
 
@@ -31,7 +31,7 @@ public class TreeTraversal {
 
         posOrderRecur(head.left);
         posOrderRecur(head.right);
-        System.out.printf(head.value + " ");
+        System.out.printf(head.val + " ");
     }
 
     public static void preOrderUnRecur(TreeNode head) {
@@ -42,7 +42,7 @@ public class TreeTraversal {
         stack.push(head);
         while (!stack.isEmpty()) {
             head = stack.pop();
-            System.out.printf(head.value + " ");
+            System.out.printf(head.val + " ");
             if (head.right != null)
                 stack.push(head.right);
             if (head.left != null)
@@ -61,7 +61,7 @@ public class TreeTraversal {
                 head = head.left;
             } else {
                 head = stack.pop();
-                System.out.printf(head.value + " ");
+                System.out.printf(head.val + " ");
                 head = head.right;
             }
         }
@@ -83,7 +83,7 @@ public class TreeTraversal {
                 s1.push(head.right);
         }
         while (!s2.isEmpty()) {
-            System.out.printf(s2.pop().value + " ");
+            System.out.printf(s2.pop().val + " ");
         }
     }
 

@@ -3,6 +3,8 @@ package com.varhzj.lab.springmvc;
 import java.util.List;
 
 import com.varhzj.lab.springmvc.interceptor.DemoInterceptor;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

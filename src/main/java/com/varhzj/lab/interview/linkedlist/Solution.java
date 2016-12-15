@@ -195,6 +195,12 @@ public class Solution {
         return dummy.next;
     }
 
+    // Delete Node in a Linked List
+    public void deleteNode(ListNode node) {
+        node.val = node.next.val;
+        node.next = node.next.next;
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
         ListNode head = new ListNode(1);
