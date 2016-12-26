@@ -6,7 +6,6 @@ import java.util.BitSet;
 /**
  * Hello world!
  */
-<<<<<<< HEAD
 public class App
 {
 
@@ -28,10 +27,9 @@ public class App
         try {
             obj.wait(); // java.lang.IllegalMonitorStateException
         } catch (InterruptedException e) {
-=======
-public class App {
 
-    public static void main(String[] args) {
+        }
+
 //        BitSet bs1 = new BitSet(12);
 //        bs1.set(1);
 //        bs1.set(2, false);
@@ -57,7 +55,6 @@ public class App {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
->>>>>>> 09e5075fa580321cb38d4e89479adf68fa1002ee
             e.printStackTrace();
         }
     }

@@ -17,7 +17,7 @@ public class TreePrint {
         TreeNode current;
         while (!list.isEmpty()) {
             current = list.poll();
-            System.out.print(current.value + " ");
+            System.out.print(current.val + " ");
             if (current.left != null) {
                 list.offer(current.left);
             }

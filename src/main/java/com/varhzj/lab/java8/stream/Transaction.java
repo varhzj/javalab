@@ -34,7 +34,7 @@ public class Transaction {
         return "Transaction{" +
                 "trader=" + trader +
                 ", year=" + year +
-                ", value=" + value +
+                ", val=" + value +
                 '}';
     }
 }
