@@ -15,10 +15,10 @@ class Horse implements Runnable {
 	private final int id = counter++;
 	private int strides = 0;
 	private static Random rand = new Random(47);
-	private static CyclicBarrier barrirer;
+	private static CyclicBarrier barrier;
 
 	public Horse(CyclicBarrier b) {
-		barrirer = b;
+		barrier = b;
 	}
 
 	public synchronized int getStrides() {
@@ -32,7 +32,7 @@ class Horse implements Runnable {
 				synchronized (this) {
 					strides += rand.nextInt(3);
 				}
-				barrirer.await();
+				barrier.await();
 			}
 		} catch (InterruptedException | BrokenBarrierException e) {
 			e.printStackTrace();
