@@ -116,6 +116,7 @@ public class CalendarDateTimeFormatTest {
         }
         fastLatch.await();
         System.out.println("Cost time: " + (System.nanoTime() - start1));
+        service.shutdown();
     }
 
 }
