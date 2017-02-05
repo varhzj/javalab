@@ -4,7 +4,7 @@ package com.varhzj.lab.mylab;
  * Created by varhzj on 17-1-6.
  * -XX:+TraceClassLoading
  * 类加载过程分析：
- * 1、加载：
+ * 1、装载：
  *      1）通过一个类的全限定名来获取定义此类的二进制字节流
  *      2）将这个字节流所代表的静态存储结构转换为方法区的运行时数据结构
  *      3）在内存中生成一个代表这个类的java.lang.Class对象，作为方法区这个类的各种数据的访问入口
@@ -22,7 +22,7 @@ package com.varhzj.lab.mylab;
  *              1）这时候进行内存分配的仅包括类变量（被static修饰的变量），而不包括实例变量，
  *              实例变量将会在对象实例化时随着对象一起分配在Java堆中
  *              2）初始值通常情况下是数据类型的零值，特殊情况：如果类字段的字段属性表存在ConstantValue（static final）属性，
- *              那在准备阶段变量value就会被初始化为ConstantValue属性所指定的值
+ *              那在准备阶段变量value就会被初始化为ConstantValue属性所指定的值 ????????
  *      2.3、解析：
  *          将常量池中的符号引用（以一组符号来描述所引用的目标，符号可以是任何形式的字面量，只要使用时能无歧义的定位到目标即可）
  *          替换为直接引用（直接指向目标的指针、相对偏移量或是一个能间接定位到目标的句柄）的过程
@@ -51,10 +51,13 @@ package com.varhzj.lab.mylab;
 public class ClassLoaderSimple {
 
     public static void main(String[] args) {
-        constantClassValue();
-        array();
-        supClassStaticValue();
-        staticBlockOrder();
+//        constantClassValue();
+//        array();
+//        supClassStaticValue();
+//        staticBlockOrder();
+
+        loadClassTest();
+        classForNameTest();
     }
 
     /**
@@ -100,7 +103,42 @@ public class ClassLoaderSimple {
         System.out.println(StaticBlockClass.valueAfter);
     }
 
+    /**
+     * 将会执行类初始化
+     */
+    static void classForNameTest() {
+        try {
+            Class.forName("com.varhzj.lab.mylab.Sub");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        System.out.println("End of Class.forName().");
+    }
 
+    /**
+     * 进行类装载，不进行链接和类初始化
+     */
+    static void loadClassTest() {
+        try {
+            Thread.currentThread().getContextClassLoader().loadClass("com.varhzj.lab.mylab.Sub");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        System.out.println("End of classLoader.loadClass().");
+    }
+
+}
+
+class LoadClassSup {
+    static {
+        System.out.println("LoadClassSup");
+    }
+}
+
+class LoadClassSub extends LoadClassSup {
+    static {
+        System.out.println("LoadClassSub");
+    }
 }
 
 class ConstantClass {

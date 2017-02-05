@@ -20,3 +20,18 @@ public class URLConnDemo {
     }
 
 }
+
+class Game {
+    Game(int i) {
+        System.out.println("Game constructor");
+    }
+}
+
+class BoardGame extends Game {
+
+    BoardGame(int i) {
+        // 必需
+        super(i);
+        System.out.println("BoardGame constructor");
+    }
+}
