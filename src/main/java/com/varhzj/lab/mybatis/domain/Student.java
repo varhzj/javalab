@@ -1,8 +1,12 @@
 package com.varhzj.lab.mybatis.domain;
 
+import org.apache.ibatis.type.Alias;
+
 import java.text.DateFormat;
 import java.util.Date;
 
+// 在比较时都将转换为小写
+@Alias("Student")
 public class Student {
 
 	private Integer studId;

@@ -25,15 +25,20 @@ public class ZooKeeperConnect implements Watcher {
 			e.printStackTrace();
 		}
 		System.out.println("ZooKeeper session established.");
+		zookeeper.addAuthInfo("digest", "admin:admin123".getBytes());
+		zookeeper.addAuthInfo("digest", "user:password".getBytes());
+		zookeeper.create("/zk_test_auth", "admin123".getBytes(), Ids.CREATOR_ALL_ACL,CreateMode.PERSISTENT);
+		zookeeper.create("/zk_test_auth/1", "1".getBytes(), Ids.CREATOR_ALL_ACL,CreateMode.PERSISTENT);
+		zookeeper.create("/zk_test_auth/2", "2".getBytes(), Ids.OPEN_ACL_UNSAFE,CreateMode.PERSISTENT);
 
 		String znode1 = zookeeper.create("/zk-test-", "".getBytes(), Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL);
 		System.out.println("Create znode: " + znode1);
 
-		String znode2 = zookeeper.create("/zk-test/test", "test".getBytes(), Ids.OPEN_ACL_UNSAFE,
-				CreateMode.EPHEMERAL_SEQUENTIAL);
-		System.out.println("Create znode: " + znode2);
+//		String znode2 = zookeeper.create("/zk-test/test", "test".getBytes(), Ids.OPEN_ACL_UNSAFE,
+//				CreateMode.EPHEMERAL_SEQUENTIAL);
+//		System.out.println("Create znode: " + znode2);
 
-		zookeeper.getData(znode2, false, null);
+//		zookeeper.getData(znode2, false, null);
 
 		zookeeper.create("/zk-test-async/test", "hello".getBytes(), Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL,
 				new StringCallback() {
