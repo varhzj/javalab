@@ -1,5 +1,7 @@
 package com.varhzj.lab.interview.binarytree;
 
+import java.util.*;
+
 /**
  * Created by varhzj on 12/14/16.
  */
@@ -38,5 +40,150 @@ public class Solution {
         return false;
     }
 
+    // Given a binary tree, return the preorder traversal of its nodes' values.
+    public List<Integer> preorderTraversal(TreeNode root) {
 
+        List<Integer> res = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        if (root != null) {
+            stack.push(root);
+        }
+
+        while (!stack.isEmpty()) {
+            TreeNode node = stack.pop();
+            res.add(node.val);
+            if (node.right != null) {
+                stack.push(node.right);
+            }
+            if (node.left != null) {
+                stack.push(node.left);
+            }
+        }
+
+        return res;
+    }
+
+    // Given a binary tree, return the inorder traversal of its nodes' values.
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode node = root;
+        while (!stack.isEmpty() || node != null) {
+            if (node != null) {
+                stack.push(node);
+                node = node.left;
+            } else {
+                node = stack.pop();
+                res.add(node.val);
+                node = node.right;
+            }
+        }
+        return res;
+    }
+
+    // Given a binary tree, return the level order traversal of its nodes' values.
+    // (ie, from left to right, level by level).
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
+        Queue<TreeNode> cur = new LinkedList<>();
+        Queue<TreeNode> next = new LinkedList<>();
+        if (root != null) {
+            cur.offer(root);
+        }
+
+        while (!cur.isEmpty()) {
+            List<Integer> list = new ArrayList<Integer>();
+            while (!cur.isEmpty()) {
+                TreeNode node = cur.poll();
+                list.add(node.val);
+                if (node.left != null) {
+                    next.offer(node.left);
+                }
+                if (node.right != null) {
+                    next.offer(node.right);
+                }
+            }
+            res.add(list);
+            // swap
+            Queue tmp = cur;
+            cur = next;
+            next = tmp;
+        }
+
+        return res;
+    }
+
+    // Given a binary tree, return the bottom-up level order traversal of its nodes' values.
+    // (ie, from left to right, level by level from leaf to root).
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+        LinkedList<List<Integer>> res = new LinkedList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        if (root != null) {
+            queue.offer(root);
+        }
+
+        while (!queue.isEmpty()) {
+            List<Integer> list = new ArrayList<Integer>();
+            int levelNum = queue.size();
+            for (int i = 0; i < levelNum; i++) {
+                TreeNode node = queue.poll();
+                list.add(node.val);
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+                if (node.right != null) {
+                    queue.offer(node.right);
+                }
+            }
+            res.addFirst(list);
+        }
+
+        return res;
+    }
+
+
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        LinkedList<List<Integer>> res = new LinkedList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        boolean leftToRight = true;
+        if (root != null) {
+            queue.offer(root);
+        }
+
+        while (!queue.isEmpty()) {
+            LinkedList<Integer> list = new LinkedList<>();
+            int levelNum = queue.size();
+            for (int i = 0; i < levelNum; i++) {
+                TreeNode node = queue.poll();
+                if (leftToRight) {
+                    list.addLast(node.val);
+                } else {
+                    list.addFirst(node.val);
+                }
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+                if (node.right != null) {
+                    queue.offer(node.right);
+                }
+            }
+            res.addLast(list);
+            leftToRight = !leftToRight;
+        }
+
+        return res;
+    }
+
+    // Invert a binary tree.
+    public TreeNode invertTree(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+
+        TreeNode left = root.left;
+        TreeNode right = root.right;
+        root.left = invertTree(right);
+        root.right = invertTree(left);
+        return root;
+    }
 }

@@ -1,5 +1,7 @@
 package com.varhzj.lab.interview.linkedlist;
 
+import java.util.Stack;
+
 /**
  * Created by varhzj on 12/13/16.
  */
@@ -35,6 +37,47 @@ public class Solution {
         return dummy.next;
     }
 
+    // You are given two non-empty linked lists representing two non-negative integers.
+    // The most significant digit comes first and each of their nodes contain a single digit.
+    // Add the two numbers and return it as a linked list.
+    public ListNode addTwoNumbersII(ListNode l1, ListNode l2) {
+        Stack<Integer> s1 = new Stack<Integer>();
+        while (l1 != null) {
+            s1.push(l1.val);
+            l1 = l1.next;
+        }
+
+        Stack<Integer> s2 = new Stack<Integer>();
+        while (l2 != null) {
+            s2.push(l2.val);
+            l2 = l2.next;
+        }
+
+        int carry = 0;
+        ListNode l3 = null;
+        while (!s1.isEmpty() || !s2.isEmpty()) {
+            int val = carry;
+            if (!s1.isEmpty()) {
+                val += s1.pop();
+            }
+            if (!s2.isEmpty()) {
+                val += s2.pop();
+            }
+            carry = val / 10;
+            ListNode node = new ListNode(val % 10);
+            node.next = l3;
+            l3 = node;
+        }
+
+        if (carry > 0) {
+            ListNode node = new ListNode(carry);
+            node.next = l3;
+            l3 = node;
+        }
+
+        return l3;
+    }
+
     // Given a linked list, determine if it has a cycle in it.
     public boolean hasCycle(ListNode head) {
         ListNode fast = head;
@@ -50,6 +93,7 @@ public class Solution {
         return false;
     }
 
+    // 获取有环链表起点
     public ListNode detectCycle(ListNode head) {
         ListNode fast = head;
         ListNode slow = head;
@@ -139,6 +183,24 @@ public class Solution {
         return dummy.next;
     }
 
+    // Reverse Linked List
+    public ListNode reverseList(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        ListNode curr = head;
+        ListNode pre = null;
+        ListNode next = null;
+        while (curr != null) {
+            next = curr.next;
+            curr.next = pre;
+            pre = curr;
+            curr = next;
+        }
+        return pre;
+    }
+
     public void reorderList(ListNode head) {
         if (head == null || head.next == null) {
             return;
@@ -168,24 +230,6 @@ public class Solution {
             }
             cur = tmp;
         }
-    }
-
-    // Reverse Linked List
-    public ListNode reverseList(ListNode head) {
-        if (head == null || head.next == null) {
-            return head;
-        }
-
-        ListNode curr = head;
-        ListNode pre = null;
-        ListNode next = null;
-        while (curr != null) {
-            next = curr.next;
-            curr.next = pre;
-            pre = curr;
-            curr = next;
-        }
-        return pre;
     }
 
     public boolean isPalindrome(ListNode head) {
@@ -222,6 +266,55 @@ public class Solution {
         }
 
         return false;
+    }
+
+    public ListNode reverseBetween(ListNode head, int m, int n) {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode pre = dummy;
+        ListNode start = dummy;
+        for (int i = 0; i < m; i++) {
+            pre = start;
+            start = start.next;
+        }
+        ListNode tmp;
+        for (int i = 0; i < n - m; i++) {
+            tmp = start.next;
+            start.next = tmp.next;
+            tmp.next = pre.next;
+            pre.next = tmp;
+        }
+        return dummy.next;
+    }
+
+    public ListNode reverseKGroup(ListNode head, int k) {
+        if (head == null || head.next == null || k < 2) {
+            return head;
+        }
+
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode pre = dummy;
+        ListNode start = head;
+        ListNode cur = head;
+        int count = 0;
+        while (cur != null) {
+            count++;
+            ListNode next = cur.next;
+            if (count == k) {
+                while (start.next != next) {
+                    ListNode tmp = start.next;
+                    start.next = tmp.next;
+                    tmp.next = pre.next;
+                    pre.next = tmp;
+                }
+                pre = start;
+                start = next;
+                count = 0;
+            }
+            cur = next;
+        }
+        return dummy.next;
     }
 
     // Remove Linked List Elements:
@@ -272,6 +365,7 @@ public class Solution {
     // Rotate List:
     // Given a list, rotate the list to the right by k places, where k is non-negative.
     public ListNode rotateRight(ListNode head, int k) {
+        // 特殊情况
         if (head == null || head.next == null) {
             return head;
         }
@@ -374,25 +468,6 @@ public class Solution {
         return dummy.next;
     }
 
-    public ListNode reverseBetween(ListNode head, int m, int n) {
-        ListNode dummy = new ListNode(0);
-        dummy.next = head;
-        ListNode pre = dummy;
-        ListNode start = dummy;
-        for (int i = 0; i < m; i++) {
-            pre = start;
-            start = start.next;
-        }
-        ListNode tmp;
-        for (int i = 0; i < n - m; i++) {
-            tmp = start.next;
-            start.next = tmp.next;
-            tmp.next = pre.next;
-            pre.next = tmp;
-        }
-        return dummy.next;
-    }
-
     // Delete Node in a Linked List
     public void deleteNode(ListNode node) {
         node.val = node.next.val;
@@ -421,6 +496,36 @@ public class Solution {
         return head;
     }
 
+    // Given a sorted linked list, delete all nodes that have duplicate numbers,
+    // leaving only distinct numbers from the original list.
+    public ListNode deleteDuplicatesII(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode pre = dummy;
+        ListNode cur = head;
+        while (cur != null) {
+            boolean duplicate = false;
+            while (cur.next != null && cur.val == cur.next.val) {
+                duplicate = true;
+                cur = cur.next;
+            }
+            if (duplicate) {
+                cur = cur.next;
+                continue;
+            }
+            pre.next = cur;
+            pre = cur;
+            cur = cur.next;
+        }
+        pre.next = cur;
+
+        return dummy.next;
+    }
+
     // Write a program to find the node at which the intersection of two singly linked lists begins.
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         ListNode curA = headA;
@@ -432,7 +537,7 @@ public class Solution {
 
         ListNode curB = headB;
         int sizeB = 0;
-        while(curB != null) {
+        while (curB != null) {
             sizeB++;
             curB = curB.next;
         }
