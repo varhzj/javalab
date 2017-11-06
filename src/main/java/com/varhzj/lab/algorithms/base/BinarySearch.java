@@ -6,6 +6,8 @@ import edu.princeton.cs.introcs.StdOut;
 import java.util.Arrays;
 import java.util.Random;
 
+import static com.varhzj.lab.algorithms.base.ArrayGenerate.genRandomInts;
+
 public class BinarySearch {
 
     public static int search(int key, int[] arr) {
@@ -27,19 +29,15 @@ public class BinarySearch {
     public static void main(String[] args) {
         int[] arr = genRandomInts(100);
         Arrays.sort(arr);
+        // 删除重复项
+        int index = DelDuplicate.delDuplicate(arr);
+        int[] arrNoDup = Arrays.copyOfRange(arr, 0, index);
         while (!StdIn.isEmpty()) {
             int key = StdIn.readInt();
             StdOut.println("Key: " + key + ", index: " + search(key, arr));
         }
     }
 
-    private static int[] genRandomInts(int count) {
-        Random random = new Random();
-        int[] arr = new int[count];
-        for (int i = 0; i < count; i++) {
-            arr[i] = random.nextInt(count);
-        }
-        return arr;
-    }
+
 
 }
