@@ -313,6 +313,36 @@ public class Solution {
         return ' ';
     }
 
+    // There are N children standing in a line. Each child is assigned a rating value.
+    // You are giving candies to these children subjected to the following requirements:
+    // * Each child must have at least one candy.
+    // * Children with a higher rating get more candies then their neighbors.
+    // what is the minimum candies you must have?
+    public int candy(int[] ratings) {
+        int n = ratings.length;
+        // 相对于基础candy数的增量数组
+        int[] incs = new int[n];
+        // 从左到右遍历,递增则在前一个基础上+1
+        for (int i = 0; i < n - 1; i++) {
+            if (ratings[i + 1] > ratings[i]) {
+                incs[i + 1] = incs[i] + 1;
+            }
+        }
+        // 从右向左遍历,递增取当前与后一个+1最大值
+        for (int i = n - 1; i > 0; i--) {
+            if (ratings[i - 1] > ratings[i]) {
+                incs[i - 1] = Math.max(incs[i - 1], incs[i] + 1);
+            }
+        }
+        // 基础为一人一个
+        int sum = n;
+        for (int inc : incs) {
+            sum += inc;
+        }
+
+        return sum;
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
         System.out.println(solution.generate(4));
