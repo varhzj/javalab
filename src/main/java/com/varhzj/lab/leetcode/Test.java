@@ -5,15 +5,18 @@ import java.util.List;
 
 public class Test {
 
-	public static void main(String[] args) {
-		List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6);
-		for (int i : list) {
-			System.out.println("========" + i + "========");
-			for (int j : list) {
-				System.out.print(j);
+	public static void main(String[] args) throws InterruptedException {
+		Thread t1 = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				for (int i = 0; i < 100000; i++) {
+					System.out.println(i);
+				}
 			}
-			System.out.println();
-		}
+		});
+		t1.start();
+		t1.join();
+        System.out.println("end");
 	}
 
 }
