@@ -40,6 +40,34 @@ public class Solution {
         return res;
     }
 
+    // 求出数组中两个相加为指定值的数组，从0开始，可以有多个结果
+    public List<int[]> twoSumDup(int[] nums, int target) {
+        List<int[]> list = new ArrayList<>();
+        Map<Integer, Boolean> map = new HashMap<>();
+        for (int num : nums) {
+            int tmp = target - num;
+            if (map.get(tmp) != null && !map.get(tmp)) {
+                list.add(new int[]{num, tmp});
+                // 标识已使用
+                map.put(num, true);
+                map.put(tmp, true);
+            } else {
+                map.put(num, false);
+            }
+        }
+        return list;
+    }
+
+    static class Tupple<T, R> {
+        T t;
+        R r;
+
+        public Tupple(T t, R r) {
+            this.t = t;
+            this.r = r;
+        }
+    }
+
     // 删除有序数组中的重复元素
     public int removeDuplicates(int[] nums) {
         int j = 0;
@@ -357,8 +385,8 @@ public class Solution {
         Solution solution = new Solution();
         System.out.println(solution.generate(4));
         System.out.println(solution.getRow(10));
-        int[] nums = new int[]{1, 2, 3, 4, 5, 6, 7};
-        solution.rotate(nums, 3);
+        int[] nums = new int[]{7, 1, 2, 2, 3, 3, 4, 4, 0, 5, 6, 7};
+        List<int[]> ints = solution.twoSumDup(nums, 7);
         printArray(nums);
 //        Long l = 1L;
 //        Integer i = (Integer) l;
