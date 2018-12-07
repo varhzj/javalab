@@ -1,6 +1,7 @@
 package com.varhzj.lab.interview.dp;
 
 import java.util.List;
+import java.util.Set;
 
 public class Solution {
 
@@ -55,6 +56,22 @@ public class Solution {
             max = Math.max(maxLocal, max);
         }
         return max;
+    }
+
+    public boolean wordBreak(String s, Set<String> dict) {
+
+        boolean[] res = new boolean[s.length() + 1];
+        res[0] = true;
+        for (int i = 1; i <= s.length(); i++) {
+            for (int j = i - 1; j >= 0; j--) {
+                if (res[j] && dict.contains(s.substring(j, i))) {
+                    res[i] = true;
+                    break;
+                }
+            }
+        }
+
+        return res[s.length()];
     }
 
     public static void main(String[] args) {
