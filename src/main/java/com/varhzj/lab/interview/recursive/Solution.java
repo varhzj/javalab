@@ -58,11 +58,7 @@ public class Solution {
 
     private static void printEightQueens(int[] queens, int row) {
         if (row == 8) {
-            System.out.println(
-                    Arrays.stream(queens)
-                            .mapToObj(Integer::toString)
-                            .collect(Collectors.joining(","))
-            );
+            System.out.println(Arrays.toString(queens));
             return;
         }
 
