@@ -1,5 +1,8 @@
 package com.varhzj.lab.interview.greedy;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Solution {
 
     public int maxProfitI(int[] prices) {
@@ -23,5 +26,15 @@ public class Solution {
         }
         return sum;
     }
+
+    public boolean canJump(int[] nums) {
+        int reach = 1;
+        for (int i = 0; i < nums.length && i < reach; i++) {
+            reach = Math.max(reach, i + 1 + nums[i]);
+        }
+
+        return reach >= nums.length;
+    }
+
 
 }

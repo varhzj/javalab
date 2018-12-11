@@ -1,5 +1,7 @@
 package com.varhzj.lab.interview.linkedlist;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -568,6 +570,53 @@ public class Solution {
         return curA;
     }
 
+    public static int josephCycle(int n, int m) {
+        if (n <= 0 || m <= 0) {
+            return -1;
+        }
+
+        List<Integer> list = new ArrayList<>(n);
+        for (int i = 1; i <= n; i++) {
+            list.add(i);
+        }
+
+        int index = 0;
+        for (int i = 1; i < n; i++) {
+            index = (index + m - 1) % list.size();
+            list.remove(index);
+        }
+
+        return list.get(0);
+    }
+
+    public static int josephCycleList(int n, int m) {
+        if (n <= 0 || m <= 0) {
+            return -1;
+        }
+
+        ListNode head = new ListNode(1);
+        ListNode curr = head;
+        // 生成环形列表
+        for (int i = 2; i <= n; i++) {
+            curr.next = new ListNode(i);
+            curr = curr.next;
+        }
+        curr.next = head;
+
+        ListNode pre = curr;
+        curr = head;
+        while (curr.next != curr) {
+            for (int i = 0; i < m - 1; i++) {
+                pre = curr;
+                curr = curr.next;
+            }
+            pre.next = curr.next;
+            curr = pre.next;
+        }
+
+        return curr.val;
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
         ListNode head = new ListNode(1);
@@ -581,6 +630,7 @@ public class Solution {
         node3.next = node4;
         solution.reorderList(head);
         printList(head);
+        System.out.println(josephCycleList(100, 14));
 //        ListNode newHead = solution.reverseBetween(head, 2, 4);
 //        printList(newHead);
     }
