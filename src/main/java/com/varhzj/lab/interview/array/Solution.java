@@ -376,8 +376,37 @@ public class Solution {
     //
     // For example, given [0,1,0,2,1,0,1,3,2,1,2,1], return 6.
     public int trap(int[] height) {
+        int len = height.length;
+        int[] left = new int[len];
+        int[] right = new int[len];
+
+        for (int i = 1; i < len; i++) {
+            left[i] = Math.max(left[i - 1], height[i - 1]);
+        }
+
+        for (int i = len - 2; i >= 0; i--) {
+            right[i] = Math.max(right[i + 1], height[i + 1]);
+        }
+
+        int sum = 0;
+        for (int i = 0; i < len; i++) {
+            int min = Math.min(left[i], right[i]);
+            if (min > height[i]) {
+                sum += min - height[i];
+            }
+        }
+
+        return sum;
+    }
+
+    //There are two sorted arrays nums1 and nums2 of size m and n respectively.
+    //
+    //Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).
+    //
+    //You may assume nums1 and nums2 cannot be both empty.
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         // TODO
-        return 1;
+        return 0;
     }
 
 
@@ -385,8 +414,8 @@ public class Solution {
         Solution solution = new Solution();
         System.out.println(solution.generate(4));
         System.out.println(solution.getRow(10));
-        int[] nums = new int[]{7, 1, 2, 2, 3, 3, 4, 4, 0, 5, 6, 7};
-        List<int[]> ints = solution.twoSumDup(nums, 7);
+        int[] nums = new int[]{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
+        System.out.println(solution.trap(nums));
         printArray(nums);
 //        Long l = 1L;
 //        Integer i = (Integer) l;
