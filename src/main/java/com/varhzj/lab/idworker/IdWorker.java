@@ -1,4 +1,4 @@
-package com.varhzj.lab.mylab.idgenerator;
+package com.varhzj.lab.idworker;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
