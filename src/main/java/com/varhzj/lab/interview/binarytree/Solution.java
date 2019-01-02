@@ -7,6 +7,60 @@ import java.util.*;
  */
 public class Solution {
 
+    public boolean hasPathSum(TreeNode root, int sum) {
+        if (root == null) {
+            return false;
+        }
+
+        if (root.left == null && root.right == null) {
+            return sum == root.val;
+        }
+
+        return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);
+    }
+
+    public List<List<Integer>> pathSum(TreeNode root, int sum) {
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> cur = new ArrayList<>();
+        pathSum(root, sum, cur, res);
+        return res;
+    }
+
+    private void pathSum(TreeNode root, int sum, List<Integer> cur, List<List<Integer>> res) {
+        if (root == null) {
+            return;
+        }
+
+        cur.add(root.val);
+
+        if (root.left == null && root.right == null && sum == root.val) {
+            res.add(new ArrayList<>(cur));
+        }
+
+        pathSum(root.left, sum - root.val, cur, res);
+        pathSum(root.right, sum - root.val, cur, res);
+
+        cur.remove(cur.size() - 1);
+    }
+
+    public int minDepth(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        if (root.left == null && root.right == null) {
+            return 1;
+        }
+
+        if (root.left == null) {
+            return minDepth(root.right) + 1;
+        } else if (root.right == null) {
+            return minDepth(root.left) + 1;
+        } else {
+            return Math.min(minDepth(root.left), minDepth(root.right)) + 1;
+        }
+    }
+
     // Maximum Depth of Binary Tree
     public int maxDepth(TreeNode root) {
         if (root == null) {
