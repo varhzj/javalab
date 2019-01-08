@@ -7,6 +7,43 @@ import java.util.*;
  */
 public class Solution {
 
+    // kth element in array
+    public int kthElement(int[] arr, int k) {
+
+        int start = 0;
+        int end = arr.length - 1;
+        while (true) {
+            int partition = partition(arr, start, end);
+            if (partition == k - 1) {
+                return arr[partition];
+            } else if (partition < k - 1) {
+                start = partition + 1;
+            } else {
+                end = partition - 1;
+            }
+        }
+
+    }
+
+    private int partition(int[] arr, int start, int end) {
+        int pivot = arr[start];
+        while (start < end) {
+            while (start < end && arr[end] <= pivot) { // 从后找到大于pivot的值放到前面
+                end--;
+            }
+            arr[start] = arr[end];
+
+            while (start < end && arr[start] >= pivot) { // 从前找到小于pivot的值放到后面
+                start++;
+            }
+            arr[end] = arr[start];
+        }
+
+        arr[start] = pivot;
+
+        return start;
+    }
+
     // 删除数组中的某个元素，并返回新数组的长度
     public int rmElement(int[] arr, int value) {
         if (arr == null) {

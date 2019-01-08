@@ -7,6 +7,83 @@ import java.util.*;
  */
 public class Solution {
 
+    public void flatten(TreeNode root) {
+        flatten(root, null);
+    }
+
+    private TreeNode flatten(TreeNode root, TreeNode tail) {
+        if (root == null) {
+            return tail;
+        }
+
+        root.right = flatten(root.left, flatten(root.right, tail));
+        root.left = null;
+        return root;
+    }
+
+    public boolean isBalanced(TreeNode root) {
+        return balancedHeight(root) >= 0;
+    }
+
+    private int balancedHeight(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int left = balancedHeight(root.left);
+        int right = balancedHeight(root.right);
+
+        if (left < 0 || right < 0 || Math.abs(left - right) > 1) {
+            return -1;
+        }
+
+        return Math.max(left, right) + 1;
+    }
+
+    int maxSum;
+
+    public int maxPathSum(TreeNode root) {
+        maxSum = Integer.MIN_VALUE;
+        dfsPathSum(root);
+        return maxSum;
+    }
+
+    private int dfsPathSum(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int l = dfsPathSum(root.left);
+        int r = dfsPathSum(root.right);
+        int sum = root.val;
+        if (l > 0) {
+            sum += l;
+        }
+        if (r > 0) {
+            sum += r;
+        }
+        maxSum = Math.max(sum, maxSum);
+
+        int sonMax = Math.max(l, r);
+        return sonMax > 0 ? root.val + sonMax : root.val;
+    }
+
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+
+        if (root == null || root == p || root == q) {
+            return root;
+        }
+
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
+
+        if (left != null && right != null) {
+            return root;
+        } else {
+            return left == null ? right : left;
+        }
+    }
+
     public boolean hasPathSum(TreeNode root, int sum) {
         if (root == null) {
             return false;

@@ -65,8 +65,8 @@ public class Solution {
         }
 
 //        insertionSort(nums);
-        bubbleSort(nums);
-
+//        bubbleSort(nums);
+        quickSort(nums, 0, 9);
         printArray(nums);
     }
 
