@@ -7,6 +7,45 @@ import java.util.*;
  */
 public class Solution {
 
+    public List<Integer> travelMatrix(int[][] matrix) {
+        if (matrix == null || matrix.length == 0) {
+            return new ArrayList<>();
+        }
+
+        int rowSize = matrix.length;
+        int colSize = matrix[0].length;
+        List<Integer> res = new ArrayList<>(rowSize * colSize);
+        int startRow = 0;
+        int endRow = rowSize - 1;
+        int startCol = 0;
+        int endCol = colSize - 1;
+
+        while (startRow <= endRow && startCol <= endCol) {
+
+            for (int i = startCol; i <= endCol; i++) {
+                res.add(matrix[startRow][i]);
+            }
+            startRow++;
+
+            for (int i = startRow; i <= endRow; i++) {
+                res.add(matrix[i][endCol]);
+            }
+            endCol--;
+
+            for (int i = endCol; i >= startCol && endRow >= startRow; i--) {
+                res.add(matrix[endRow][i]);
+            }
+            endRow--;
+
+            for (int i = endRow; i >= startRow && endCol >= startCol; i--) {
+                res.add(matrix[i][startCol]);
+            }
+            startCol++;
+        }
+
+        return res;
+    }
+
     // kth element in array
     public int kthElement(int[] arr, int k) {
 
